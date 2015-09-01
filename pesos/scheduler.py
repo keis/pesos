@@ -380,7 +380,7 @@ class PesosSchedulerDriver(SchedulerDriver):
       self.detector = MasterDetector.from_uri(self.master_uri)
     except MasterDetector.Error as e:
       self.status = mesos_pb2.DRIVER_ABORTED
-      self.scheduler.error('Failed to construct master detector: %s' % e)
+      self.scheduler.error(-1, 'Failed to construct master detector: %s' % e)
       return
 
     assert self.scheduler_process is None
