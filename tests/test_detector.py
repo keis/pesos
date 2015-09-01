@@ -145,6 +145,11 @@ def test_from_uri():
   assert isinstance(detector, StandaloneMasterDetector)
 
 
+def test_from_bad_uri():
+  with pytest.raises(MasterDetector.CannotDetect):
+    MasterDetector.from_uri('http://192.168.33.2:5051')
+
+
 @pytest.mark.skipif('"ZOOKEEPER_IP" not in os.environ')
 def test_from_uri_zk():
   detector = MasterDetector.from_uri('zk://%s/blorp' % os.environ['ZOOKEEPER_IP'])
